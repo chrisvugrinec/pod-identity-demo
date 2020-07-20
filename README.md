@@ -12,8 +12,8 @@ AKS uses AAD on the following levels:
 - Application
 
 Cluster and Personal/ Non Personal has to do with IAM related to cluster management and Usage (for eg accessing the API with kubectl)
-Application can use AAD authentication in several way, using the (managed) Pod identities is currently the way to go.
-Here you use an Assigned ID (MI/SP) and link this to your APP/POD
+Application can use AAD authentication in several ways, using the (managed) Pod identities is currently the recommendation.
+Here you use an User Assigned Managed ID and link this to your APP/POD
 
 In order to setup aad-pod-identies you need to deploy some CRDs, most notable:
 
