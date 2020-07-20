@@ -13,6 +13,9 @@ then
   echo "----------------------------"
   echo "Keyvaults: "
   az keyvault list -o table
+  echo "------------------------------"
+  echo "Managed IDs:"
+  az identity list --query [].name -o tsv
   exit 1
 fi
 

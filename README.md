@@ -21,13 +21,13 @@ And you need to have 2 components which are responsible for acquiring a valid AA
 
 ![Image of pod ID](https://raw.githubusercontent.com/chrisvugrinec/pod-identity-demo/master/images/pod-id.png)
 
-1. The pod like to access a resource
-2. The request is intercepted by the NMI which retrieved the assigned ID by querying the MIC
-3. If the is an AzureIdentityBinding by using the assigned ID we can proceed
+1. The pod likes to access an Azure resource
+2. The request is intercepted by the NMI which retrieves the assigned ID by querying the MIC using the pod ID
+3. If there is an AzureIdentityBinding which uses the retrieved assigned ID we can proceed
 4. NMI tries to get a valid token from AAD using the ADAL framework
 5. The token is presented to the POD.app
 6. The token is presented to the POD/app
-7. With this token, the POD can now try to access the requested service (for eg Keyvault)...The service needs to be configured in such a way that found (managed) ID is able to access the service
+7. With this token, the POD can now try to access the requested service (for eg Keyvault)...The service needs to be configured so that the found (managed) ID is able to access the service. 
 
 ## Cookbook
 
@@ -36,6 +36,14 @@ These are the steps to do it yourself so you can experiment with it.
 ### Create Infra
 
 For this demo you will need the following Azure Infra components: AKS cluster, Keyvault. This demo uses a tiered setup into 2 layers. Terraform is used for the rollout and the State is stored on Azure Blob storage.
+
+- get sources; ```git clone https://github.com/chrisvugrinec/pod-identity-demo.git```
+- prepare Azure storage (for terraform state); ```cd infra; ./1_setupTFStorage.sh*```
+- set the ARM_ACCESS_KEY variable; ```export ARM_ACCESS_KEY= [ the storage key found in the previous step] ```
+- setup tier 2, the network structure; ```cd tier_2``` change the variables.tf, naming and storage account settings
+- rollout the network structure; ```terraform init; terraform plan; terraform apply```
+- setup tier 3, AKS and Keyvault; ```cd tier_3``` change the variables.tf, naming and storage account settings
+- rollout the demo app structure; ```terraform init; terraform plan; terraform apply```
 
 ### Setup POD Identity and App
 
