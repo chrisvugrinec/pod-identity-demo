@@ -33,7 +33,7 @@ resource "azurerm_key_vault_access_policy" "demo_infra" {
     ]
 
     secret_permissions = [
-      "set","list","get","delete"
+      "set","list","get","delete","recover",
     ]
 
     storage_permissions = [
