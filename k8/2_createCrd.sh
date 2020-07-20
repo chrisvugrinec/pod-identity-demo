@@ -8,6 +8,9 @@ then
   echo ""
   echo "AKS Clusters:"
   az aks list -o table
+  echo "------------------------------"
+  echo "Managed IDs:"
+  az identity list --query [].name -o tsv
   exit 1
 fi
 
