@@ -19,7 +19,7 @@ And you need to have 2 components which are responsible for acquiring a valid AA
 - Managed Identity Controller; A K8 deployment responsible for linking the Identities to the pod and the underlying VMSS and cleaning up when not relevant anymore
 - Node Managed Identity; A K8 Deamonset responsible to authorisation of the pod. It will use the identity from the MIC and will generate an AAD token through an ADAL request.
 
-![Image of pod ID](https://github.com/chrisvugrinec/pod-identity-demo/images/pod-id.png)
+![Image of pod ID](https://raw.githubusercontent.com/chrisvugrinec/pod-identity-demo/master/images/pod-id.png)
 
 
 
