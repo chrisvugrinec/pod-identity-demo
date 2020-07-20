@@ -47,6 +47,17 @@ For this demo you will need the following Azure Infra components: AKS cluster, K
 
 ### Setup POD Identity and App
 
+- prepare demo; ```cd k8```
+- assign proper roles to AKS managed Identity (Managed Identity Operator and Virtual Machine Contributor); ```./0_roleBindingAKSClusterID.sh AKS_CLUSTER AKS_RG```
+- deploy required CRDs', Managed Identity Controller and Node Management Identity; ```./1_deployAdPodIdentity.sh```
+- create and deploy AzureIdentity and AzureIdentityBindings (based on previous CRDs); ```./2_createCrd.sh AKS_CLUSTER AKS_RG IDENTITY_NAME```
+- deploy the DEMO application; ```./3_deploy_demo.sh AKS_CLUSTER AKS_RG IDENTITY_NAME KEYVAULT_NAME```
+
+You should be able to see the secret in the log file of the pod;
+
+```kubectl logs -f demo-py```
+
+This should correspond with the value set in the terraform rollout: ```see /infra/tier_3/app1-team/keyvault.tf```
 
 ## Links
 
