@@ -5,9 +5,15 @@
 Many great articles about AKS Pod Identity, this is more a note for myself...but feel free to use it, if you like it.
 Links I have used are at the bottom.
 
-Within ctx of AKS 3 ways of utilising AAD IAM, Cluster level (MI/SP), Personal/Non personal, Application. 
+AKS uses AAD on the following levels:
+
+- Cluster level (MI/SP)
+- Personal/Non personal accounts (kubectl)
+- Application
+
 Cluster and Personal/ Non Personal has to do with IAM related to cluster management and Usage (for eg accessing the API with kubectl)
-With Application you use an Assigned ID (MI/SP) and link this to your APP/POD; aad-pod-identities makes this link possible.
+Application can use AAD authentication in several way, using the (managed) Pod identities is currently the way to go.
+Here you use an Assigned ID (MI/SP) and link this to your APP/POD
 
 In order to setup aad-pod-identies you need to deploy some CRDs, most notable:
 
