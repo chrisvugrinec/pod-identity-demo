@@ -10,12 +10,16 @@ Cluster and Personal/ Non Personal has to do with IAM related to cluster managem
 With Application you use an Assigned ID (MI/SP) and link this to your APP/POD; aad-pod-identities makes this link possible.
 
 In order to setup aad-pod-identies you need to deploy some CRDs, most notable:
+
 - AzureIdentity
 - AzureIdentityBinding
+  
 And you need to have 2 components which are responsible for acquiring a valid AAD token for your app:
-- Managed Identity Controller; A K8 deployment responsible for linking the Identities to the pod and the underlying VMSS and cleaning up when not relevant anymore
-- Node Managed Identity; A K8 Deamonset
 
+- Managed Identity Controller; A K8 deployment responsible for linking the Identities to the pod and the underlying VMSS and cleaning up when not relevant anymore
+- Node Managed Identity; A K8 Deamonset responsible to authorisation of the pod. It will use the identity from the MIC and will generate an AAD token through an ADAL request.
+
+![Image of pod ID](https://github.com/chrisvugrinec/pod-identity-demo/images/pod-id.png)
 
 
 
@@ -36,3 +40,4 @@ az role assignment create
 - https://csa-ocp-ger.github.io/unicorn/challenges.aadpodidentity.html
 - https://cloudiqtech.com/implementing-azure-ad-pod-identity-in-aks-cluster/
 - https://raw.githubusercontent.com/Azure/kubernetes-keyvault-flexvol/master/deployment/kv-flexvol-installer.yaml
+- https://itnext.io/the-right-way-of-accessing-azure-services-from-inside-your-azure-kubernetes-cluster-14a335767680
