@@ -44,7 +44,8 @@ These are the steps to do it yourself so you can experiment with it.
 For this demo you will need the following Azure Infra components: AKS cluster, Keyvault. This demo uses a tiered setup into 2 layers. Terraform is used for the rollout and the State is stored on Azure Blob storage.
 
 - get sources; ```git clone https://github.com/chrisvugrinec/pod-identity-demo.git```
-- prepare Azure storage (for terraform state); ```cd infra; ./1_setupTFStorage.sh*```
+- prepare Azure storage (for terraform state); ```cd infra``` change the variables in the ```1_setupTFStorage.sh``` script.
+- create the storage: ```./1_setupTFStorage.sh*```
 - set the ARM_ACCESS_KEY variable; ```export ARM_ACCESS_KEY= [ the storage key found in the previous step] ```
 - setup tier 2, the network structure; ```cd tier_2``` change the variables.tf, naming and storage account settings
 - rollout the network structure; ```terraform init; terraform plan; terraform apply```
