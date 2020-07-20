@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-py
+  labels:
+    aadpodidbinding: aks-demo-app1
+spec:
+  containers:
+  - name: demo-py
+    image: cvugrinec/msid-demo:2.2
+    env:
+    - name: SUBSCRIPTION
+      value: "fb6c41ba-6926-41b2-b7e7-fd8d93bdedfa"
+    - name: RG
+      value: "MC_dev-australiaeast-3-demo-resources_aks-demo-app1_australiaeast"
+    - name: MSID
+      value: "aks-demo-app1"
+    - name: KEY_VAULT_NAME
+      value: "keyvault-demo-app1"

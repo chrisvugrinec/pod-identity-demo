@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-py
+  labels:
+    aadpodidbinding: vuggie-msid-demo2
+spec:
+  containers:
+  - name: demo-py
+    image: cvugrinec/msid-demo:2.2
+    env:
+    - name: SUBSCRIPTION
+      value: XXX_SUB_XXX
+    - name: RG
+      value: XXX_AKS_RG_XXX
+    - name: MSID
+      value: XXX_MSID_XXX
+    - name: KEY_VAULT_NAME
+      value: XXX_KV_XXX
