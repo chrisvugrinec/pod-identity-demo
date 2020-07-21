@@ -34,7 +34,3 @@ variable "location" {
 variable "aks-vnet" {
   default = "vuggie-aks-demo-vnet"
 }
-      
-variable "aks-subnet-cidr" {
-  default = "15.1.1.0/24"
-}

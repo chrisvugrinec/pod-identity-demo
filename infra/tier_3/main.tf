@@ -25,7 +25,7 @@ module "app1-team" {
   location      = var.location
   aks-vnet      = var.aks-vnet
   mgmt-rg       = "${var.environment}-${var.location}-${var.mgmt-tier}-mgmt-resources"
-  aks-subnet-cidr = var.aks-subnet-cidr
+  aks-subnet-cidr = "15.1.1.0/24"
 }
 
 output "kube_id" {
