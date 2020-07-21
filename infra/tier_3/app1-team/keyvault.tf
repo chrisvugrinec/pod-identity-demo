@@ -20,13 +20,9 @@ resource "azurerm_key_vault" "demo" {
     virtual_network_subnet_ids = [azurerm_subnet.demo.id]
   }
 
-  tags = var.tags
-}
-
-resource "azurerm_key_vault_access_policy" "demo_infra" {
+  access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
-    key_vault_id = azurerm_key_vault.demo.id
 
     key_permissions = [
       "list",
@@ -39,6 +35,9 @@ resource "azurerm_key_vault_access_policy" "demo_infra" {
     storage_permissions = [
       "list",
     ]
+  }
+
+  tags = var.tags
 }
 
 resource "azurerm_key_vault_access_policy" "demo_app" {
