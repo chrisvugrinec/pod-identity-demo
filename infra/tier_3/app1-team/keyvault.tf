@@ -33,7 +33,7 @@ resource "azurerm_key_vault_access_policy" "demo_infra" {
     ]
 
     secret_permissions = [
-      "set","list","get","delete","recover",
+      "set","list","get","delete","recover","purge",
     ]
 
     storage_permissions = [
@@ -63,5 +63,7 @@ resource "azurerm_key_vault_secret" "demo" {
  name         = "demo-secret1"
   value        = "this is the best demo ever!!!"
   key_vault_id = azurerm_key_vault.demo.id
+  depends_on = [azurerm_key_vault.demo]
   tags = var.tags
 }
+
