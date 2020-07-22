@@ -17,7 +17,7 @@ locals {
 
 # This is a shared Component
 module "app1-team" {
-  source        = "./app1-team"
+  source        = "./app-team"
   aks-name      = "aks-demo-app1"
   id-name      = "uaid-demo-app1"
   keyvault-name = "keyvault-demo-app1"
