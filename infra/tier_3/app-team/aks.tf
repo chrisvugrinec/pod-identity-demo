@@ -11,6 +11,7 @@ resource "azurerm_kubernetes_cluster" "demo" {
   location            = var.location
   resource_group_name = var.rg-name
   dns_prefix          = var.aks-name
+  depends_on          = [azurerm_resource_group.demo]
 
   default_node_pool {
     name           = "pool1"
