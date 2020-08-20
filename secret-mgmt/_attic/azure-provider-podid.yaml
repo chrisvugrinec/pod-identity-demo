@@ -1,0 +1,17 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
+kind: SecretProviderClass
+metadata:
+  name: azure-kvname-podid
+spec:
+  provider: azure
+  parameters:
+    usePodIdentity: "true"
+    keyvaultName: "akv-podidentities-demo"
+    cloudName: ""          # [OPTIONAL for Azure] if not provided, azure environment will default to AzurePublicCloud
+    objects:  |
+      array:
+        - |
+          objectName: demo-secret1
+          objectType: secret        # object types: secret, key or cert
+          objectVersion: ""         # [OPTIONAL] object versions, default to latest if empty
+    tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"

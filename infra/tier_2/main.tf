@@ -12,7 +12,7 @@ terraform {
 }
 
 locals {
-  name-convention = "${var.environment}-${var.location}-${var.tier}"
+  name-convention = "podidentities"
 }
 
 # This is a shared Component

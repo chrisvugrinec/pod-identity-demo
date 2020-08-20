@@ -1,0 +1,20 @@
+# This is SecretProviderClass example using system-assigned identity for authentication with Key Vault
+apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
+kind: SecretProviderClass
+metadata:
+  name: azure-kvname-system-msi
+spec:
+  provider: azure
+  parameters:
+    usePodIdentity: "false"
+    useVMManagedIdentity: "true"
+    userAssignedIdentityID: ""     # If empty, then defaults to use the system assigned identity on the VM
+    keyvaultName: "akv-podidentities-demo"
+    cloudName: ""
+    objects:  |
+      array:
+        - |
+          objectName: demo-secret1
+          objectType: secret        # object types: secret, key or cert
+          objectVersion: ""         # [OPTIONAL] object versions, default to latest if empty
+    tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"

@@ -12,7 +12,7 @@ terraform {
 }
 
 locals {
-  name-convention = "${var.environment}-${var.location}-${var.tier}"
+  name-convention = "podidentities"
 }
 
 # This is a shared Component
@@ -20,11 +20,11 @@ module "app1-team" {
   source        = "./app-team"
   aks-name      = "aks-demo-app1"
   id-name      = "uaid-demo-app1"
-  keyvault-name = "keyvault-demo-app1"
+  keyvault-name = "akv-${local.name-convention}-demo"
   rg-name       = "${local.name-convention}-demo-resources"
   location      = var.location
   aks-vnet      = var.aks-vnet
-  mgmt-rg       = "${var.environment}-${var.location}-${var.mgmt-tier}-mgmt-resources"
+  mgmt-rg       = "${local.name-convention}-mgmt-resources"
   aks-subnet-cidr = "15.1.1.0/24"
 }
 
